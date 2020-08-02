@@ -23,6 +23,7 @@ def ExitApplication():
 ext = Button (root, text='Exit',command=ExitApplication,bg='brown',fg='white')
 ext.pack()
 path=input("enter path")
+
 unique = dict()
 
 if(os.path.exists(path)==False):
@@ -41,5 +42,5 @@ for path,folders,files in os.walk(path):
             print(path)
             shutil.move(source,destination)
 
-
+root.mainloop()
     
