@@ -1,5 +1,9 @@
 import os
 import shutil
+from tkinter import *
+
+root = Tk()
+root.title = "Duplicator-Finder"
 
 path=input("enter path")
 unique = dict()
