@@ -22,7 +22,19 @@ def ExitApplication():
 # exit button
 ext = Button (root, text='Exit',command=ExitApplication,bg='brown',fg='white')
 ext.pack()
-path=input("enter path")
+
+
+# enter word Label
+lbl = Label(root, text = "Enter path here")
+lbl.pack(side = LEFT)
+
+# Word Input
+ent = Entry(root, bd = 5, textvariable = word)
+ent.pack(side = RIGHT)
+ent.focus()
+
+
+path = input("enter path")
 
 unique = dict()
 
