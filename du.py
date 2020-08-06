@@ -6,6 +6,7 @@ from tkinter import messagebox
 root = Tk()
 root.title = "Duplicator-Finder"
 
+path = StringVar()
 
                             # EXIT FUNCTION #
 #=========================================================================================================================#
@@ -24,35 +25,39 @@ ext = Button (root, text='Exit',command=ExitApplication,bg='brown',fg='white')
 ext.pack()
 
 
-# enter word Label
+# enter path Label
 lbl = Label(root, text = "Enter path here")
 lbl.pack(side = LEFT)
 
-# Word Input
-ent = Entry(root, bd = 5, textvariable = word)
+# path Input
+ent = Entry(root, bd = 5, textvariable = path)
 ent.pack(side = RIGHT)
 ent.focus()
 
+def duplicate():
 
-path = input("enter path")
+    unique = dict()
+    global path
 
-unique = dict()
+    if(os.path.exists(path.get())==False):
+        print("Error: path not found")
 
-if(os.path.exists(path)==False):
-    print("Error: path not found")
+    for path,folders,files in os.walk(path):
+        for filename in files:
+            if filename not in unique:
+                unique[filename] = filename
+            else:
+                print(filename + ' is a duplicate of ' + unique[filename])
+                file_path = os.path.join(path, filename)
+                print(file_path)
+                source= file_path
+                destination='Documents'
+                print(path)
+                shutil.move(source,destination)
 
-for path,folders,files in os.walk(path):
-    for filename in files:
-        if filename not in unique:
-            unique[filename] = filename
-        else:
-            print(filename + ' is a duplicate of ' + unique[filename])
-            file_path = os.path.join(path, filename)
-            print(file_path)
-            source= file_path
-            destination='Documents'
-            print(path)
-            shutil.move(source,destination)
+# Finder button
+Find = Button(root , text = "Find!", command = result)
+Find.pack()
 
 root.mainloop()
     
